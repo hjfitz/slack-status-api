@@ -7,6 +7,9 @@
   "author": "Harry <hfitz83@gmail.com>",
   "license": "GPL-3.0",
   "private": false,
+  "scripts": {
+    "start": "node index"
+  },
   "dependencies": {
     "axios": "^0.18.0",
     "debug": "^3.1.0",

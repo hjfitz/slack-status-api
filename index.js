@@ -5,11 +5,10 @@ const api = express();
 
 let cached = { status: 'Scraper not initialised' };
 
-api.get('/', (req, res) => {
+api.get('/v1', async (req, res) => {
   res.json(cached);
-  scrape().then(scraped => {
-    cached = scraped;
-  });
+  const scraped = await scrape();
+  cached = scraped;
 });
 
 api.listen(process.env.PORT || 5000, async () => {
