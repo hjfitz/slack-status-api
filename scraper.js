@@ -46,7 +46,4 @@ const scrape = async () => {
   }
 };
 
-scrape().then(console.log);
-
-
 module.exports = scrape;
