@@ -3,9 +3,16 @@ const scrape = require('./scraper');
 
 const api = express();
 
-api.get('/', (req, res) => scrape().then(status => res.json(status)));
+let cached = { status: 'Scraper not initialised' };
+
+api.get('/', (req, res) => {
+  res.json(cached);
+  scrape().then(scraped => {
+    cached = scraped;
+  });
+});
 
 api.listen(process.env.PORT || 5000, async () => {
+  cached = await scrape();
   console.log('api listening on', process.env.PORT);
-  // initialise a cache here
 });
