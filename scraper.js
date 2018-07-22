@@ -31,14 +31,14 @@ const scrape = async () => {
   debug('parsing remaining status');
   const services = Array
   .from(dom.window.document.querySelectorAll('.service.header.align_center'))
-  .reduce((acc, serviceDOM) => {
+  .reduce((statusObj, serviceDOM) => {
     const [service, stat] = serviceDOM.children;
     const serviceName = service.children[0].textContent;
     debug('serviceName get', serviceName);
     const status = stat.children[0].src;
     debug('image get', status);
-    acc[serviceName] = iconLookup[status];
-    return acc;
+    statusObj[serviceName] = iconLookup[status];
+    return statusObj;
   }, {});
   return {
     status: main,
